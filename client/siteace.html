@@ -1,0 +1,203 @@
+<head>
+  <title>SiteAce</title>
+  <link rel='icon' href='/favicon.ico?v=2' type='image/x-icon'/ >
+</head>
+
+<body>
+	
+</body>
+
+<template name="ApplicationLayout">
+	{{> yield "navbar"}}
+	{{> yield "main"}}
+</template>
+
+<template name="navbar">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Site Ace</a>
+		        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		        </button>
+			</div>
+			<div class="navbar-collapse collapse">
+				{{> searchTemplate}}
+	
+				<ul class="nav navbar-nav navbar-right">
+					{{> loginButtons}} <!-- here -->
+				</ul>
+			</div>
+		</div>
+	</nav>
+</template>
+
+<template name="searchTemplate">
+	<div class="navbar-form navbar-left">
+	    <input type="text" id="search_text" class="form-control js-search" placeholder="Search" />
+	</div>
+</template>
+
+<template name="websites">
+	<div class="container">
+		{{#if currentUser}}
+			{{> website_form}}
+		{{/if}}
+
+		{{> website_list}}
+	</div>
+</template>
+
+<!-- template that displays several website items -->
+<template name="website_list">
+	<div id="search-meta">
+      {{#if isLoading}}
+        searching ...
+      {{/if}}
+    </div>
+	{{#each websites}}
+		{{> website_item}}
+	{{/each}}
+</template>
+
+<template name="website_form">
+	<div class="website_form_add_button_container">
+		<div class="container">
+			<div class="col-lg-8 col-md-8 col-sm-8">
+				<input type="text" placeholder="http://www.yahoo.com" class="websiteURL"/>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4">
+				<a class="btn btn-default js-toggle-website-form" href="#">
+			  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		  			Add New Website
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="add_website_form">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <div class="modal-title">
+	        	Add New Website
+	        </div>
+	      </div>
+	      <div class="modal-body">       
+	        <form class="js-add-website">
+	        	<div class="form-group">
+		         	<label for="title">Title</label>
+			    	<input type="text" class="form-control" id="title" placeholder="Mysite">
+		        </div>
+
+	        	<div class="form-group">
+	            	<label for="url">Site address</label>
+		    		<input type="url" required class="form-control" id="url" placeholder="http://www.mysite.com">
+	        	</div>
+		        
+		        <div class="form-group">
+			    	<label for="description">Description</label>
+			    	<textarea rows=3 required="true" class="form-control" id="description" placeholder="I found this site really useful for ..." ></textarea> 
+			  	</div>
+		        
+		        <div class="form-group">
+		        	<button type="submit" class="btn btn-success">Submit</button>
+	        		<button class="btn btn-warning" data-dismiss="modal">cancel</button>
+	      		</div>  
+	        </form> 
+	      </div>
+	      
+	    </div>
+	  </div>
+  	</div>
+</template>
+
+<!-- template that displays individual website entries -->
+<template name="website_item">
+<div class="col-12 website_item">
+	<div class="website_item_title">
+		<a href={{url}} target="_blank">
+			<img class="browser-icon" src="/browser.png"/>
+		</a>
+		<a href="/website/{{_id}}">{{{title}}}</a>
+	</div>
+	
+	<div class="website_item_desc">
+		{{{description}}}
+	</div>
+
+	<div class="website_item_created_on">Created on: {{formatDate createdOn "short"}}</div>
+
+	<div>
+		<a href="#" class="btn btn-default js-upvote">
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+		</a>
+		<span class="website_item_upvote_count">{{upVoteCount}}</span>
+		<a href="#" class="btn btn-default js-downvote">
+			<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+		</a>
+		<span class="website_item_downvote_count">{{downVoteCount}}</span>
+	</div>
+	
+	<!-- you will be putting your up and down vote buttons in here! -->
+</div>
+</template>
+
+<!-- template that displays individual website details -->
+<template name="website_item_detail">
+	<div class="container">
+		<div class="jumbotron website_item_detail_container">
+			<div class="website_item_detail_title">{{title}}</div>
+			<div class="website_item_detail_desc">{{description}}</div>
+		</div>
+		<div>
+			{{#if currentUser}}
+				{{> comments_form}}
+			{{else}}
+				<div class="login_msg">Please login to post comments.</div>
+			{{/if}}
+			
+			<div>
+				{{> website_item_comments}}
+			</div>
+		</div>
+
+		<div class="comments_form_back_button_container">
+		 	<a href="/"><button id="website_detail_back_btn" class="btn btn-default">BACK</button></a>
+		 </div>
+	</div>
+</template>
+
+
+<!-- Template that contains the comments form. -->
+<template name="comments_form">	
+	<form class="js-add-comments-form" id="addCommentsForm">
+	  <div class="form-group">
+	    <input type="text" id="website_id" hidden="true" value={{_id}} />
+	    <textarea rows="3" class="form-control" id="comment_text" placeholder="Add Comments..." required="true"></textarea>
+	  </div>
+
+	  <div class="comments_form_add_button_container">
+	  	<button type="submit" class="btn btn-default">Add Comment</button>
+	  </div>
+	</form>
+</template>
+
+<!--Template that lists out all the comments -->
+<template name="website_item_comments">
+	{{#each comments}}
+		{{> website_item_comment}}
+	{{/each}}
+</template>
+
+<!--Single Comment template -->
+<template name="website_item_comment">
+	<div class="website_item_comment">
+		<div class="website_item_comment_commentedBy">{{commentedBy}}</div>
+		<div class="website_item_comment_text">{{text}}</div>
+	</div>
+</template>
+

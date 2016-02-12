@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+
+body{
+	font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 15px;
+	padding-top: 70px; 
+	background: #e1e3e4;
+}
+
+searchHighlightedText{
+	background-color: lightgreen;
+	color:black;
+}
+
+.websiteURL{
+	width:100%;
+	padding: 5px;
+}
+
+/*--------------------Website Item-----------------*/
+.website_item{
+	box-shadow: .0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding: 20px;
+	margin-bottom: 20px;	
+	background: white;
+}
+
+.website_item_title{
+	font-size: 22px;
+	color:darkcyan;
+}
+
+.website_item_desc{
+	font-size: 16px;
+	color:coral;
+}
+
+.website_item_created_on{
+	font-size: 12px;
+	padding-bottom: 10px;
+}
+
+.website_item_upvote_count{
+	font-size: 12px;
+	color: blue;
+}
+
+.website_item_downvote_count{
+	font-size: 12px;
+	color: red;
+}
+/*--------------------End of Website Item-----------------*/
+
+.website_form_add_button_container{
+	padding-bottom: 15px;
+}
+
+.browser-icon{
+	width: 40px;
+	height: 40px;
+}
+/*-----------Website detail CSS------------------------------*/
+
+.website_item_detail_container{
+	background: white;
+}
+
+.website_item_detail_title{
+	font-size: 22px;
+	color:darkcyan;
+}
+
+.website_item_detail_desc{
+	font-size: 16px;
+	color:coral;
+}
+
+.website_item_comment{
+	background: white;
+	box-shadow: .0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding: 10px;
+	margin-bottom: 15px;	
+}
+
+.website_item_comment_commentedBy{
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.website_item_comment_text{
+	font-size: 12px;
+}
+
+.comments_form_add_button_container{
+	padding-bottom: 10px;
+}
+
+.comments_form_back_button_container{
+	float:right;
+}
+
+.login_msg{
+	padding-bottom: 20px;
+	color:blue;
+}
+/*-----------End of Website detail CSS------------------------------*/
