@@ -18,19 +18,7 @@ Users can move to a detail page for a website (using routing).
 
 On the detail page, users can post comments about a webpage, and they are displayed below the description of the webpage.
 
-You can gain a further 30% by implementing one or more of the following features:
-
-Challenge 1: Automatic information
-Can you use the HTTP package for Meteor to pull in information about the posted web links automatically, so the user does not need to enter anything other than the URL? 
-
-Challenge 2: Search function
-Implement a search function that allows the user to search within the listed sites for key words
-
-Challenge 3: Website recommender
-Can you recommend websites to users based on things they have up voted and commented on? E.g. if I up vote a site entitled ‘Tofu recipes’, it would recommend other sites with ‘tofu’ and ‘recipe’ in their titles or descriptions. 
-
-You should deploy your application using the Meteor deploy command and submit a link to the site running on the Meteor server. 
-
+Site deployed on http://siteaceapp.meteor.com/
 Notes:
 -Used 'meteorhacks:search-source' package for searching websites. You have to add check and ejson packages for the search-source to work.
 -Used iron:router, momentjs:moment, ian:accounts-ui-bootstrap-3
