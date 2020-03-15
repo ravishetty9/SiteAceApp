@@ -18,7 +18,6 @@ Users can move to a detail page for a website (using routing).
 
 On the detail page, users can post comments about a webpage, and they are displayed below the description of the webpage.
 
-Site deployed on http://siteaceapp.meteor.com/
 Notes:
 -Used 'meteorhacks:search-source' package for searching websites. You have to add check and ejson packages for the search-source to work.
 -Used iron:router, momentjs:moment, ian:accounts-ui-bootstrap-3
